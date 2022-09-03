@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>BD News 24 </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
@@ -14,7 +16,7 @@
         <section>
             <nav class="navbar navbar-expand-lg bg-light">
                 <div class="container">
-                    <a class="navbar-brand" href="#">BDNews24</a>
+                    <a class="navbar-brand" href="#">BdNews24</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -25,7 +27,7 @@
                                 <a class="nav-link active" aria-current="page" href="#">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Blogs</a>
+                                <a class="nav-link" href="./question.html">Blogs</a>
                             </li>
                         </ul>
                     </div>
@@ -35,38 +37,61 @@
     </header>
     <main>
         <section>
+            <div class="container text-center">
+                <div class="row my-4 bg-light">
+                    <div id="Home-section" class="col-1 m-auto btn">Home</div>
+                    <div onclick="loadNews('01')" id="Breaking-news-section" class="col-1 m-auto btn">Breaking news
+                    </div>
+                    <div onclick="loadNews('02')" id="Regular-news-section" class="col-1 m-auto btn">Regular news</div>
+                    <div onclick="loadNews('03')" id="International-news-section" class="col-1 m-auto btn">International
+                        news</div>
+                    <div onclick="loadNews('04')" id="Sports-section" class="col-1 m-auto btn">Sports</div>
+                    <div onclick="loadNews('05')" id="Entertainment-section" class="col-1 m-auto btn">Entertainment
+                    </div>
+                    <div onclick="loadNews('06')" id="Culture-section" class="col-1 m-auto btn">Culture</div>
+                    <div onclick="loadNews('07')" id="Arts-section" class="col-1 m-auto btn">Arts</div>
+                    <div onclick="loadNews('08')" id="All news-section" class="col-1 m-auto btn">All news</div>
+                </div>
+            </div>
+        </section>
 
+        <section>
+            <div class="container bg-light">
+                <h5>4 items found for category Entertainment</h5>
+            </div>
+        </section>
+        <section>
+            <div id="news-container" class="container">
+
+            </div>
+        </section>
+        <section>
+            <!-- Button trigger modal
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Launch static backdrop modal
+            </button> -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -79,6 +104,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+
+    <script src="./js/app.js"></script>
 </body>
 
 </html>
