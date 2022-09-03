@@ -1,3 +1,13 @@
+.category-container {
+    background-color: rgba(245, 242, 239, 0.586);
+    border-radius: 15px;
+}
+
+.category-btn {
+    background-color: rgba(128, 143, 176, 0.673);
+}
+
+
 .author-img {
     height: 30px;
     width: 30px;
