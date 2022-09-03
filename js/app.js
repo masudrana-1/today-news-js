@@ -1,18 +1,74 @@
-const loadNews = (id) => {
-    toggleSpinner(true);
 
-    fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
+const loadData = () => {
+    fetch('https://openapi.programming-hero.com/api/news/categories')
         .then(res => res.json())
-        .then(data => displayNews(data.data))
+        .then(data => loadNewsCategory(data.data.news_category))
+}
+
+// const { category_id, category_name } = loadNewsCategory();
+
+const loadNewsCategory = (data) => {
+    // console.log(data);
+    const categoryContainer = document.getElementById('category-container');
+    data.forEach(category => {
+        // console.log(category);
+        const newDiv = document.createElement('div');
+        newDiv.classList.add();
+
+        newDiv.innerHTML = `
+        <p onclick="loadNews(${category.category_id},event)" class="">${category.category_name}</p>
+        
+        `;
+
+        categoryContainer.appendChild(newDiv);
+    });
 }
 
 
-const displayNews = (news) => {
+loadData();
+
+
+
+const loadNews = async (id, event) => {
+    console.log(id, event)
+    toggleSpinner(true);
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/news/category/0${id}`)
+
+    const data = await res.json();
+    displayNews(data.data, event);
+
+
+}
+
+
+const displayNews = (news, event) => {
+
+    console.log(event.target.innerText);
+
+    // console.log(news);
 
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = "";
+
+    const count = document.getElementById('count');
+    if (news.length === 0) {
+        count.classList.remove('d-none');
+        count.innerHTML = `
+        <h5>No items found for category ${event.target.innerText}</h5>
+        `;
+    }
+    else {
+        count.classList.remove('d-none');
+        count.innerHTML = `
+        <h5>${news.length} items found for category ${event.target.innerText}</h5>
+        `;
+    }
+
+    news.sort((a, b) => b.total_view - a.total_view);
+
     news.forEach(newNews => {
-        console.log(newNews);
+        // console.log(newNews);
 
         const newDiv = document.createElement('div');
         newDiv.classList.add('card')
@@ -66,8 +122,8 @@ const loadNewsDetails = async id => {
     const url = `https://openapi.programming-hero.com/api/news/${id}`;
     const res = await fetch(url);
     const data = await res.json();
-    displayNewsDetails(data.data);
-    console.log(data.data)
+    displayNewsDetails(data.data[0]);
+    console.log(data.data[0])
 }
 
 
@@ -82,8 +138,8 @@ const displayNewsDetails = allNews => {
 
     const newsDetails = document.getElementById('news-details');
     newsDetails.innerHTML = `
-    <img class="h-50 mb-3" src="${allNews.image}" class="card-img-top" alt="...">
-    <p>Release Date: ${allNews.releaseDate ? allNews.releaseDate : 'No Release Date Found'}</p>
+    <img class="h-50 mb-3 img-fluid " src="${allNews.image_url}" class="card-img-top" alt="...">
+    <p>Published Date: ${allNews.published_date ? allNews.published_date : 'No Release Date Found'}</p>
     <P>Storage: ${allNews.mainFeatures ? allNews.mainFeatures.storage : 'No storage info'}</P>
     <p>Others: Bluetooth: ${allNews.others ? allNews.others.Bluetooth : 'No Bluetooth'}</p>
 
