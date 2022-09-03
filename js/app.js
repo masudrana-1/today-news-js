@@ -1,4 +1,6 @@
 const loadNews = (id) => {
+    toggleSpinner(true);
+
     fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
         .then(res => res.json())
         .then(data => displayNews(data.data))
@@ -6,6 +8,7 @@ const loadNews = (id) => {
 
 
 const displayNews = (news) => {
+
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = "";
     news.forEach(newNews => {
@@ -29,7 +32,8 @@ const displayNews = (news) => {
                     <p class="card-text d-inline">${newNews.author.name ? newNews.author.name : 'No data found'}</p>
                     <p class="d-inline mx-3">Views: ${newNews.total_view ? newNews.total_view : 'No data found'}</p>
                     <p class="d-inline mx-3">Rating: ${newNews.rating.number ? newNews.rating.number : 'No data found'}</p>
-                    <button onclick="loadNewsDetails('${newNews._id}')" class="btn btn-primary m-auto">Details</button>
+                    <button onclick="loadNewsDetails('${newNews._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details
+                    </button>
                 </div >
             </div >
         </div>
@@ -43,9 +47,45 @@ const displayNews = (news) => {
 
     });
 
+    toggleSpinner(false);
+
+}
+
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none')
+    }
+    else {
+        loaderSection.classList.add('d-none')
+    }
 }
 
 
-const loadNewsDetails = () => {
-    fetch
+const loadNewsDetails = async id => {
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data);
+    console.log(data.data)
+}
+
+
+
+
+// 18th step 
+// add to modal phone details 
+
+const displayNewsDetails = allNews => {
+    const modalTitle = document.getElementById('newsDetailModalLabel')
+    modalTitle.innerText = allNews.title;
+
+    const newsDetails = document.getElementById('news-details');
+    newsDetails.innerHTML = `
+    <img class="h-50 mb-3" src="${allNews.image}" class="card-img-top" alt="...">
+    <p>Release Date: ${allNews.releaseDate ? allNews.releaseDate : 'No Release Date Found'}</p>
+    <P>Storage: ${allNews.mainFeatures ? allNews.mainFeatures.storage : 'No storage info'}</P>
+    <p>Others: Bluetooth: ${allNews.others ? allNews.others.Bluetooth : 'No Bluetooth'}</p>
+
+    `;
 }
