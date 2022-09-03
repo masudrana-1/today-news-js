@@ -13,10 +13,9 @@ const loadNewsCategory = (data) => {
     data.forEach(category => {
         // console.log(category);
         const newDiv = document.createElement('div');
-        newDiv.classList.add();
 
         newDiv.innerHTML = `
-        <button onclick="loadNews(${category.category_id},event)" class="btn category-btn border-0 mx-3">${category.category_name}</button>
+        <button onclick="loadNews(${category.category_id},event)" class="btn category-btn border-0 my-2">${category.category_name}</button>
         
         `;
 
@@ -81,9 +80,9 @@ const displayNews = (news, event) => {
                     
                         <img class="author-img" src="${newNews.author.img ? newNews.author.img : 'No data found'}" class="img-fluid rounded-start d-inline mx-3" alt="...">
                         <p class="card-text d-inline">${newNews.author.name ? newNews.author.name : 'No data found'}</p>
-                        <p class="d-inline mx-3">Views: ${newNews.total_view ? newNews.total_view : 'No data found'}</p>
-                        <p class="d-inline mx-3">Rating: ${newNews.rating.number ? newNews.rating.number : 'No data found'}</p>
-                        <button onclick="loadNewsDetails('${newNews._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details
+                        <p class="d-inline mx-3 mt-3">Views: ${newNews.total_view ? newNews.total_view : 'No data found'}</p>
+                        <p class="d-inline mx-3 mt-3">Rating: ${newNews.rating.number ? newNews.rating.number : 'No data found'}</p>
+                        <button onclick="loadNewsDetails('${newNews._id}')" type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details
                         </button>
                     
                 </div >
