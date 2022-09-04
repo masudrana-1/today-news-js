@@ -56,9 +56,6 @@ const loadNews = async (id, event) => {
 
 const displayNews = (news, event) => {
 
-    console.log(news)
-
-
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = "";
 
