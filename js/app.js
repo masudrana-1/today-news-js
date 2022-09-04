@@ -1,12 +1,17 @@
-//load category
+//***************  load category  ****************
 
 const loadData = () => {
-    fetch('https://openapi.programming-hero.com/api/news/categories')
-        .then(res => res.json())
-        .then(data => loadNewsCategory(data.data.news_category))
-}
+    try {
+        fetch('https://openapi.programming-hero.com/api/news/categories')
+            .then(res => res.json())
+            .then(data => loadNewsCategory(data.data.news_category))
+    }
+    catch (error) {
+        console.log(error)
+    }
+};
 
-//set category
+//*************  set category  ***************
 
 const loadNewsCategory = (data) => {
     // console.log(data);
@@ -27,7 +32,7 @@ const loadNewsCategory = (data) => {
 loadData();
 
 
-//load news
+//*************  load news  **************
 
 
 const loadNews = async (id, event) => {
@@ -42,7 +47,7 @@ const loadNews = async (id, event) => {
 
 }
 
-//set news
+//************  set news  **************
 
 const displayNews = (news, event) => {
 
@@ -50,7 +55,7 @@ const displayNews = (news, event) => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = "";
 
-    //news count
+    //***********  news count  ************
 
     const count = document.getElementById('count');
     if (news.length === 0) {
@@ -66,7 +71,7 @@ const displayNews = (news, event) => {
         `;
     }
 
-    //news sorting
+    //**********  news sorting  ************
 
     news.sort((a, b) => b.total_view - a.total_view);
 
@@ -121,20 +126,18 @@ const toggleSpinner = isLoading => {
     }
 }
 
+//*********  load news data  **********
 
 const loadNewsDetails = async id => {
     const url = `https://openapi.programming-hero.com/api/news/${id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayNewsDetails(data.data[0]);
-    console.log(data.data[0])
 }
 
 
+//*************  set news data in modal  ************
 
-
-// 18th step 
-// add to modal phone details 
 
 const displayNewsDetails = allNews => {
     const modalTitle = document.getElementById('newsDetailModalLabel')
