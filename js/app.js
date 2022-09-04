@@ -102,7 +102,7 @@ const displayNews = (news, event) => {
                             <p class="card-text d-inline">${newNews.author.name ? newNews.author.name : 'No data found'}</p>
                             <p class="d-inline mx-3 mt-3">Views: ${newNews.total_view ? newNews.total_view : 'No data found'}</p>
                             <p class="d-inline mx-3 mt-3">Rating: ${newNews.rating.number ? newNews.rating.number : 'No data found'}</p>
-                            <button onclick="loadNewsDetails('${newNews._id}')" type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details
+                            <button onclick="loadNewsDetails('${newNews._id}')" type="button" class="btn mt-3 details-btn" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details
                             </button>
                         </div>
                     
