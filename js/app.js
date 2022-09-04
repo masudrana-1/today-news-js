@@ -39,11 +39,16 @@ const loadNews = async (id, event) => {
 
     toggleSpinner(true);
 
-    const res = await fetch(`https://openapi.programming-hero.com/api/news/category/0${id}`)
+    try {
+        const res = await fetch(`https://openapi.programming-hero.com/api/news/category/0${id}`)
 
-    const data = await res.json();
-    displayNews(data.data, event);
+        const data = await res.json();
+        displayNews(data.data, event);
 
+    }
+    catch (error) {
+        console.log(error);
+    }
 
 }
 
@@ -129,10 +134,14 @@ const toggleSpinner = isLoading => {
 //*********  load news data  **********
 
 const loadNewsDetails = async id => {
-    const url = `https://openapi.programming-hero.com/api/news/${id}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsDetails(data.data[0]);
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/${id}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsDetails(data.data[0]);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 
