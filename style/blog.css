@@ -1,0 +1,33 @@
+.heading {
+    background-color: rgb(218, 232, 235);
+    color: rgb(167, 116, 140);
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.question-1 {
+    background-color: rgb(234, 245, 233);
+
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.question-2 {
+    background-color: rgb(233, 234, 245);
+
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.question-3 {
+    background-color: rgb(245, 234, 233);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.question-4 {
+    background-color: rgb(245, 240, 233);
+
+    padding: 20px;
+    border-radius: 20px;
+}
