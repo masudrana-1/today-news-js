@@ -7,7 +7,7 @@ const loadData = () => {
             .then(data => loadNewsCategory(data.data.news_category))
     }
     catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 
@@ -56,6 +56,8 @@ const loadNews = async (id, event) => {
 
 const displayNews = (news, event) => {
 
+    console.log(news)
+
 
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = "";
@@ -83,24 +85,26 @@ const displayNews = (news, event) => {
     news.forEach(newNews => {
 
         const newDiv = document.createElement('div');
-        newDiv.classList.add('card', 'mb-4', 'shadow-lg', 'rounded');
+        newDiv.classList.add('card', 'mb-4', 'shadow-lg', 'rounded-4');
 
         newDiv.innerHTML = `
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="${newNews.image_url ? newNews.image_url : 'No data found'}" class="img-fluid rounded-start" alt="...">
+            <div class="col-md-3 text-center py-3 ">
+                <img src="${newNews.thumbnail_url ? newNews.thumbnail_url : 'No data found'}" class="img-fluid rounded-start thumbnail" alt="...">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card-body">
                     <h5 class="card-title">${newNews.title ? newNews.title : 'No data found'}</h5>
                     <p class="card-text text-wrap">${newNews.details.slice(0, 300)}...</p>
                     
-                        <img class="author-img" src="${newNews.author.img ? newNews.author.img : 'No data found'}" class="img-fluid rounded-start d-inline mx-3" alt="...">
-                        <p class="card-text d-inline">${newNews.author.name ? newNews.author.name : 'No data found'}</p>
-                        <p class="d-inline mx-3 mt-3">Views: ${newNews.total_view ? newNews.total_view : 'No data found'}</p>
-                        <p class="d-inline mx-3 mt-3">Rating: ${newNews.rating.number ? newNews.rating.number : 'No data found'}</p>
-                        <button onclick="loadNewsDetails('${newNews._id}')" type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details
-                        </button>
+                        <div class="mt-5">
+                            <img class="author-img" src="${newNews.author.img ? newNews.author.img : 'No data found'}" class="img-fluid rounded-start d-inline mx-3" alt="...">
+                            <p class="card-text d-inline">${newNews.author.name ? newNews.author.name : 'No data found'}</p>
+                            <p class="d-inline mx-3 mt-3">Views: ${newNews.total_view ? newNews.total_view : 'No data found'}</p>
+                            <p class="d-inline mx-3 mt-3">Rating: ${newNews.rating.number ? newNews.rating.number : 'No data found'}</p>
+                            <button onclick="loadNewsDetails('${newNews._id}')" type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details
+                            </button>
+                        </div>
                     
                 </div >
             </div >
