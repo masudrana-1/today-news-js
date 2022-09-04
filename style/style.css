@@ -4,7 +4,7 @@
 }
 
 .category-btn {
-    background-color: rgba(128, 143, 176, 0.673);
+    background-color: rgb(229, 240, 237);
 }
 
 
@@ -14,4 +14,9 @@
     width: 30px;
     border-radius: 20px;
 
+}
+
+
+.default-text {
+    margin: 12%;
 }
